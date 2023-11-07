@@ -1,0 +1,222 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box; /* Agregamos esta línea para incluir el borde en el tamaño total del elemento */
+}
+
+body {
+	background: #E5EAF5; /*color aplicado al cuerpo del documento*/
+    font-family: Courier New;
+}
+
+header {
+	background: #151515; /*color aplicado a la etiqueta header*/
+	color: #E5EAF5; /*color de la letra*/
+	text-align: center; /*alineacion del texto*/
+	padding: 50px 0;
+	height: 400px;
+	position: absolute; /* podemos Cambiamos 'absolute' a 'fixed' para que el encabezado sea fijo en la parte superior */
+	top: 0;
+	width: 100%;
+	
+	/* z-index: 1; Añadimos z-index para controlar su orden de apilamiento */
+}
+
+header .titulo {
+	font-family: Courier New; /*fuente utilizada*/
+	font-weight: 300;
+}
+
+main {
+	margin-top: 150px; /* Aumentamos el margen superior para evitar que el contenido quede oculto detrás del encabezado */
+}
+
+main .contenedor {
+	width: 80%; /*valor en porcentage que obtendra del ancho*/
+	max-width: 800px; /*ancho maximo del contenedor*/
+	margin:auto;
+	/*margin-left: 10%; propiedad para poner margen a la izquierda*/
+	 
+}
+
+/* ------------------------- */
+/* Estilos CSS del Reproductor */
+/* ------------------------- */
+/*clase para modificar la etiqueta que contiene esta clase*/
+
+.fm-video  {
+	width: 100%; /*aplicando ancho a la etiqueta video que contiene la clase fm-video*/
+	box-shadow: 3px 3px 10px rgba(0,0,0,.5); /* 0px 0px 6px 0px rgba(0,0,0,.5), aplicando sombreado al rededor del video*/
+	border-radius: 10px;
+}
+
+/*color de la barra del reproductor*/
+.fm-video .vjs-control-bar {
+	background: #151515 ; /*color de fondo*/
+	color: #E5EAF5; /*color de los botones o iconos del reproductor*/
+	box-shadow: 0px 0px 1px #E1E1E1; /*posicion-x | posicion-y | radio de desenfoque  | color*/
+	/*outline: 1px ridge #F9F9F9;*/
+	border-radius: 2rem; /*aplicandole bordes*/
+	/*top: 15px;*/ /*permite desplazar un elemento respecto a su posición original tomando como referencia el borde superior del elemento*/
+	bottom: 10px; /*permite desplazar un elemento respecto a su posición original tomando como referencia el borde inferior del elemento*/
+	width: 98%; /*tamaño del ancho*/
+	margin: auto;
+}
+
+/*color de la barra de progreso del reproductor y de la barra de volumen*/
+.fm-video .vjs-play-progress,
+.fm-video .vjs-volume-level {
+	background: #01387A; /*color de fondo aplicado a las barras de volumen y progreso*/
+}
+
+/*clase para aplicar color al slider de la barra de progreso del reproductor*/
+.fm-video .vjs-slider {
+	background: #E5EAF5; /*color de fondo*/
+}
+
+/*aplicandole color cuando se haga hover al video*/
+.video-js:hover .vjs-big-play-button {
+	background: #01387A; /*color aplicado*/
+}
+
+/*aplicandole estilos al boton grande del reproductor*/
+.fm-video .vjs-big-play-button {
+	background: rgba(0,0,0,.5); /*color del boton*/
+	width: 80px; /*ancho del boton*/
+	height: 80px; /*alto del boton*/
+	line-height: 80px; /*codigo para posicionar el icono del boton de play*/
+	border-radius: 100%; /*border del boton*/
+	border:none; /*codigo para desaparecer el borde*/
+}
+
+/*aplicandole color cuando se haga hover al boton*/
+.fm-video .vjs-big-play-button:hover {
+	background: #01387A;/*color que se mostrara cuando se haga hover*/
+}
+
+article {
+	margin: 50px 0;
+	background: #858484; /*color de fondo para la etiqueta article*/
+	color: #EBEBEB ; /*color del texto*/
+	font-size: 16px;
+	line-height: 28px;
+	padding: 40px;
+}
+
+article h2 {
+	color: #01387A ; /*color del titulo*/
+	font-size: 32px;
+	font-weight: normal;
+	margin-bottom: 20px;
+	line-height: 28px;
+}
+
+/* Nuevos estilos para el contenedor de video y lista de reproducción */
+.video-container {
+    display: flex;
+    flex-direction: row; /* Organiza los elementos en una fila */
+    justify-content: space-between; /* Distribuye el espacio horizontalmente */
+	 height: 500px;
+	
+}
+
+
+/*clase para el icono de lista desplegable*/
+.playlist-toggle img {
+
+	position: absolute;
+    top: 9rem;
+    margin: auto;
+    right: 6%;
+	color: white;
+	max-width: 70px;
+	
+	
+}
+
+
+/* Nuevos estilos para la lista de reproducción */
+.playlist {
+    background: #01387A ;/*color del fondo*/
+    color: #E5EAF5;/*color del texto*/
+    padding: 20px; /*relleno que ocupa el texto dentro del elemento*/
+    width: 20%; /* Ancho del área de la lista de reproducción */
+
+   /* min-width: 100%;  Establece un ancho mínimo para evitar que sea demasiado estrecho */
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column; /* Cambia la dirección de los elementos a columna */
+	position: absolute;
+    top: 15rem;
+    right: 10px;
+    display: none;
+
+    opacity: 0.9; /*transparencia del elemento*/
+}
+
+.playlist h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.playlist ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.8rem;
+
+    
+}
+
+.playlist ul li {
+    margin-bottom: 20px;
+	
+}
+
+/*color de la letra del enlace*/
+.playlist ul li a{
+   
+	color:  #E5EAF5;/*color de las letras del enalce*/
+
+}
+
+/*color de la letra del enlace*/
+.playlist ul li a img{
+   
+	
+}
+
+/*color de la letra del enlace*/
+.playlist ul li a p{
+   
+	color: #E5EAF5;/*color de las letras del enalce*/
+	
+}
+
+
+
+/* Asegúrate de ajustar el espacio según sea necesario */
+@media screen and (max-width: 1000px) {
+    .video-container {
+        flex-direction: column; /* En dispositivos móviles, cambia a una disposición de columna */
+    }
+
+    .fm-video,
+    .playlist {
+        width: 90%; /* En dispositivos móviles, ocupa todo el ancho */
+		position: relative; /*posicion relativa para que se acomode a la pantalla*/
+		top: 1px;
+		margin: auto;
+		left: 3px;
+		
+    }
+
+	.playlist-toggle{
+
+		display: none; /*no muestra el elemento*/
+
+	}
+
+}

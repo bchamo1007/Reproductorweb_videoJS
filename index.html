@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">    
+    
+    <!-- Librerias Video Js 2023 -->
+    <!-- <link href="https://vjs.zencdn.net/8.3.0/video-js.min.css" rel="stylesheet"> -->
+    <!-- <script src="https://vjs.zencdn.net/8.3.0/video.min.js"></script> -->
+    
+    <link rel="stylesheet" href="css/videoJS.css">
+    <script src="js/videoJS.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos3.css">
+    <title>Reproductor Web</title>
+</head>
+<body>
+    <header>
+        <h1 class="titulo">Reproductor de video</h1>
+    </header>
+
+    <main>
+        <div class="contenedor">
+            <div class="video-player">
+			
+            <!-- vjs-16-9 se puede usar para dar un tamaño predeterminado al reproductor -->
+            
+
+            <video id="my-video"  class="fm-video video-js vjs-16-9 vjs-big-play-centered" data-setup="{}" controls id="fm-video">
+                <source src="video/keyboard.mp4" type="video/mp4">
+            </video> 
+			
+            <article>
+                <h2>01 - Video Escribiendo en el teclado</h2>
+                <p>Video Demostrativo de hombre trabajando en su computador portatil.</p>
+            </article>
+
+            </div>
+			
+			<!-- Icono o imagen para desplegar la lista de reproducción -->
+            <div class="playlist-toggle">
+                <img src="lista1.png" alt="Mostrar lista de reproducción" title="Lista de Reproducion">
+            </div>
+
+            <div class="playlist">
+                <!-- Lista de reproducción oculta por defecto -->
+                <h3>Lista de Reproducción</h3>
+                <ul>
+                    <li>
+                        <a href="video/keyboard.mp4" data-title="01 - Video Escribiendo en el teclado"
+                        data-description="Video Demostrativo de hombre trabajando en su computador portatil.">
+                            <img src="vistasprev/escribir_teclado_vista.png" alt="Vista previa" width="80" height="60">
+                            <p>01 - Video Escribiendo en el teclado</p>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="video/baile.mp4" data-title="02 - Bailes Mexicanos"
+                        data-description="Mujeres bailando, bailes mexicanos en una plaza.">
+                            <img  src="vistasprev/baile_vista.png" alt="Vista previa" width="80" height="60">
+                            <p>02 - Bailes Mexicanos</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="video/marathon.mp4" data-title="03 - Marathon" 
+                        data-description="Video representativo en una Marathon.">
+                            <img  src="vistasprev/marathon.png" alt="Vista previa" width="80" height="60">
+                            <p>03 - Corriendo en la Playa</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            
+        </div>
+    </main>
+
+    <script>
+
+       document.addEventListener("DOMContentLoaded", function () {
+		    // Inicializa el reproductor de video 
+		    var player = videojs("my-video", {
+		        fluid: true,
+		        controlBar: {
+		            // Personaliza los controles como en tu código original
+		        },
+		    });
+
+		    // Obtén la lista de reproducción
+		    var playlist = document.querySelector(".playlist");
+		    var playlistToggle = document.querySelector(".playlist-toggle");
+
+		    // Función para cambiar la propiedad 'display' de la lista de reproducción
+		    function togglePlaylistDisplay() {
+		        if (window.innerWidth <= 1000) {
+		            playlist.style.display = "block"; // Muestra la lista en pantallas pequeñas
+		        } else {
+		            playlist.style.display = "none"; // Oculta la lista en pantallas grandes
+		        }
+		    }
+
+		    // Agrega un evento de clic a la imagen para mostrar/ocultar la lista de reproducción
+		    playlistToggle.addEventListener("click", function () {
+		        if (playlist.style.display === "block") {
+		            playlist.style.display = "none"; // Oculta la lista
+		        } else {
+		            playlist.style.display = "block"; // Muestra la lista
+		        }
+		    });
+
+		    // Llama a la función para configurar inicialmente la propiedad 'display'
+		    togglePlaylistDisplay();
+
+		    // Agrega un evento de cambio de tamaño de ventana para actualizar la propiedad 'display'
+		    window.addEventListener("resize", togglePlaylistDisplay);
+
+		    // Obteniendo los elementos que contiene la lista de reproduccion
+		    var playlistItems = document.querySelectorAll(".playlist ul li a");
+		    //obteniendo la etiqueta que contiene el titulo del video
+		    var videoTitle = document.querySelector("article h2");
+		    //obteniendo la etiqueta que contiene la descripcion del video a mostrar
+		    var videoDescription = document.querySelector("article p");
+
+		    // Agrega un evento de clic a cada elemento de la lista de reproducción
+		    playlistItems.forEach(function (item) {
+		        item.addEventListener("click", function (e) {
+		            e.preventDefault();
+		            var videoSrc = this.getAttribute("href");
+		            var title = this.getAttribute("data-title");
+		            var description = this.getAttribute("data-description");
+
+		            // Cambia la fuente del video principal
+		            player.src(videoSrc);
+		            // Cambia el título en el artículo
+		            videoTitle.textContent = title;
+		            // Cambia la descripcion del video en el articulo
+		            videoDescription.textContent = description;
+		            // Reproduce el video automáticamente
+		            player.play();
+
+		            // Oculta la lista de reproducción después de hacer clic en un elemento
+		            playlist.style.display = "none";
+		        });
+		    });
+		});
+    </script>
+</body>
+</html>
